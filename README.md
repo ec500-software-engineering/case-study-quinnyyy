@@ -48,4 +48,4 @@ They test Python versions 2.7, 3.4, 3.5, 3.6, 3.7 on Mac OSx and Linux.
 ### make a patch / pull request for the project to fix problem / add feature
 
 Track facial features and color them  
-![](./output.gif)
+![](output.gif)
