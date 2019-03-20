@@ -2,35 +2,29 @@
 ## Technology and Platform used for Development  
 ### What coding languages are used? Do you think the same languages would be used if the project was started today? What languages would you use for the project if starting it today?  
 
-OpenCV is built in C++. C++ is a good choice for OpenCV because as a computer vision and machine learning library it demands high performance, and C++ is one of the best performant high level languages. OpenCV was originally started in 1999 which also explains why it was built in C++. I think that if the project was restarted today they would probably place more focus on Python because Python has become one of the leading languages in computer vision(?) and machine learning since 1999. Currently OpenCV does support Python but more of their focus seems to be on C++ implementation. For my case study I used the Python library for OpenCV so I will focus on that for my answers. The GitHub page can be found [here](https://github.com/skvark/opencv-python)
+OpenCV is built in C++. C++ is a good choice for OpenCV because as a computer vision and machine learning library it demands high performance, and C++ is one of the best performant high level languages. OpenCV was originally started in 1999 which also explains why it was built in C++. I think that if the project was restarted today they would probably place more focus on Python because Python has become one of the leading languages in computer vision(?) and machine learning since 1999. Currently OpenCV does support Python and other languages but more of their focus seems to be on C++. For my case study I used the Python library for OpenCV.
 
 ### What build system is used (e.g. Bazel, CMake, Meson)? What build tools / environment are needed to build (e.g. does it require Visual Studio or just GCC or ?)  
 
-opencv-python's [project description](https://pypi.org/project/opencv-python/) says that the project is structured like a normal Python package with a standard setup.py file. The build process is as follows:
-
-1. Checkout repositories and submodules
-2. Find OpenCV version from the sources
-3. Install dependencies 
-4. Build OpenCV
-5. Copy each '.pyd/.so' file to cv2 folder of this project and generate wheel (?)
-6. Install the generated wheel
-7. Test that Python can import the library and run some sanity checks
-8. Use twine to upload the generated wheel to PyPI (only in release builds)
+OpenCV uses CMake as its build system.
 
 ### What frameworks / libraries are used in the project? At least one of these projects don’t use any external libraries or explicit threading, yet is noted for being the fastest in its category--in that case, what intrinsic language techniques is it using to get this speed.
 
-The only dependency for opencv-python is numpy. numpy is great when performing matrix calculations and such in python, which are needed for machine learning and computer vision applications.
+![](dependencies.png)
+
+OpenCV takes advantage of many third party libraries. A lot of these libraries just make it easier to work with images. OpenCV also has a lot of optional third party libraries such as FFMPEG that are required for some features, but if you do not want to use these features you don't need these libraries.
 
 ## Testing: describe unit/integration/module tests and the test framework
+For unit testing, OpenCV uses the Google Test framework. The same tests are done on all supported platforms i.e. Windows, MacOS, Linux, Android and the majority of testing is done using the C++ API. OpenCV runs two types of tests: accuracy tests and performance tests. Accuracy tests run OpenCV functions with different parameters and check it against a reference output. These tests are to ensure that OpenCV is consistent across platforms with different hardware and software. Performance tests ensure that the software can handle a specific workload. 
 ### How are they ensuring the testing is meaningful? Do they have code coverage metrics for example?
-???
+I think that the Google Test framework includes code coverage in their testing so OpenCV probably uses this.
 ### What CI platform(s) are they using (e.g. Travis-CI, AppVeyor)?
-They ues both Travis-CI and AppVeyor
+OpenCV uses their own system for Continuous Integration called [BuildBot](http://pullrequest.opencv.org). 
 ### What computing platform combinations are tested on their CI? E.g. Windows 10, Cygwin, Linux, Mac, GCC, Clang
-They test Python versions 2.7, 3.4, 3.5, 3.6, 3.7 on Mac OSx and Linux.
+Not sure
 ## Software architecture in your own words, including:
 ### How would you add / edit functionality if you wanted to? How would one use this project from external projects, or is it only usable as a standalone program?
-OpenCV is available as a Python package. If I wanted to add or edit functionality it would probably make most sense to fork the package from GitHub and create my own version with the functionality that I need.
+
 ### What parts of the software are asynchronous (if any)?
 
 ### Please make diagrams as appropriate for your explanation
