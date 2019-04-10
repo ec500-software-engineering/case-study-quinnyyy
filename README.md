@@ -19,10 +19,23 @@ For unit testing, OpenCV uses the Google Test framework. The same tests are done
 ### How are they ensuring the testing is meaningful? Do they have code coverage metrics for example?
 I think that the Google Test framework includes code coverage in their testing so OpenCV probably uses this.
 ### What CI platform(s) are they using (e.g. Travis-CI, AppVeyor)?
-OpenCV uses their own system for Continuous Integration called [BuildBot](http://pullrequest.opencv.org). 
+OpenCV uses their own system for Continuous Integration called [BuildBot](http://pullrequest.opencv.org).  
+It monitors the active pull requests by keeping a log of the title and description, author, and the passing and failing builds. It keeps track of which platforms are passing and which are failing.  
+![](buildbot.png)
 ### What computing platform combinations are tested on their CI? E.g. Windows 10, Cygwin, Linux, Mac, GCC, Clang
-Not sure
+Linux x64, Linux OpenCL, Linux AVX2, Win64, Win64 OpenCL, Mac, Mac OpenCL, Android armeabi-v7a, Linux x64 debug, Docs, iOS, Linux32, Win32, Win64 MSVS2017, Win64 MSVS2017 OpenCL, ARMv7, ARMv8, Android pack, Custom
 ## Software architecture in your own words, including:
+OpenCV has a modular structure, consisting of many core modules. These modules are:  
+Core functionality - this module defines basic data structures for use in computer vision applications, such as dense, multi-dimensional arrays. It also contains basic functions that are used by all other modules, such as swap and overloaded operators. It also contains enumerations and typedefs used by other modules.  
+Image processing - this is an image processing module that includes algorithms for image filtering, geometrical image transformations such as resizing and changing perspective, and color transformations.  
+Video - this modules contains algorithms for video analysis, such as motion estimation, background subtraction, and object tracking.  
+calib3d - module containing geometry algorithms, such as camera calibration (single and stereo), and pose estimation. 3d reconstruction  
+features2d - 2d feature detectors  
+objdetect - detection of objects of predefined classes i.e. faces, eyes, etc.  
+highgui - GUI  
+Video I/O - IO for video capturing  
+gpu - GPU-accelerated algorithms  
+
 ### How would you add / edit functionality if you wanted to? How would one use this project from external projects, or is it only usable as a standalone program?
 
 ### What parts of the software are asynchronous (if any)?
